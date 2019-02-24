@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--spring的依赖注入：
+            注入的方式有3种：
+                第一种：使用构造方法注入
+                2：使用set方法注入
+                3：使用注解注入
+            注入的数据类型有3类：
+                1：基本类型和String类型
+                2：其他bean类型（必须在Spring的配置文件中出现过的bean）
+                3：复杂类型（集合类型）
+    -->
+    <!-- 构造函数注入：
+        设计的标签：constructor-arg
+        标签的属性：
+            type:指定参数的类型
+            index:指定参数的索引位置
+            name:指定参数的名称
+            =============================================
+            value:指定基本数据类型或String类型的数据
+            ref:指定其他bean类型数据
+        在bean标签内
+    -->
+    <bean id="now" class="java.util.Date"></bean>
+    <bean id="customerService" class="com.itheima.service.impl.CustomerServiceImpl">
+        <constructor-arg name="driver" value="com.mysql.jdbc.Driver"></constructor-arg>
+        <constructor-arg name="port" value="3306"></constructor-arg>
+        <constructor-arg name="tody" ref="now"></constructor-arg>
+    </bean>
+
+    <!--set方法注入
+            涉及的标签：property
+            标签的属性：
+                name:指定参数的set方法名称
+                =============================================
+                value:指定基本数据类型或String类型的数据
+                ref:指定其他bean类型数据
+            在bean标签内
+    -->
+    <bean id="customerService2" class="com.itheima.service.impl.CustomerServiceImpl2">
+        <property name="driver" value="com.mysql.jdbc.Driver"></property>
+        <property name="port" value="3307"></property>
+        <property name="tody" ref="now"></property>
+    </bean>
+
+    <!--复杂类型的注入
+        结构相同，标签可以互换
+    -->
+    <bean id="customerService3" class="com.itheima.service.impl.CustomerServiceImpl3">
+        <property name="myStrs">
+            <array>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </array>
+        </property>
+        <property name="myList">
+            <list>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </list>
+        </property>
+        <property name="mySet">
+            <set>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </set>
+        </property>
+        <property name="myMap">
+            <map>
+                <entry key="testD" value="DDD"></entry>
+                <entry key="testE">
+                    <value>EEE</value>
+                </entry>
+                <entry key="testF" value="FFF"></entry>
+            </map>
+        </property>
+        <property name="myProperties">
+            <props>
+                <prop key="testG">GGG</prop>
+                <prop key="testH">HHH</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
