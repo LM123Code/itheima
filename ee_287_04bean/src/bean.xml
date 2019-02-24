@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 配置资源：把对象创建交给Spring来管理-->
-    <bean id="customerService" class="com.itheima.service.impl.CustomerServiceImpl" scope="prototype" init-method="init" destroy-method="destory"></bean>
+    <bean id="customerService" class="com.itheima.CustomerServiceImpl" scope="prototype" init-method="init" destroy-method="destory"></bean>
 
 
 
