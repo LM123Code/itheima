@@ -13,6 +13,14 @@ public class CustomerServiceImpl implements ICustomerService {
         System.out.println("bean对象创建了");
     }
 
+    public void init(){
+        System.out.println("对象初始化了");
+    }
+
+    public void destory(){
+        System.out.println("对象销毁了");
+    }
+
     public void saveCustomer(){
         System.out.println("业务层调用持久层");
     }
