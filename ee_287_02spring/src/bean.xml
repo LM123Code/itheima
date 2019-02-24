@@ -4,6 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 配置资源：把对象创建交给Spring来管理-->
-    <bean id="customerService" class="com.itheima.service.impl.CustomerServiceImpl"></bean>
+    <bean id="customerService" class="com.itheima.CustomerServiceImpl"></bean>
     <bean id="customerDao" class="com.itheima.dao.impl.CustomerDaoImpl"></bean>
 </beans>

@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/ee_287_02factory/ee_287_02factory.iml" filepath="$PROJECT_DIR$/ee_287_02factory/ee_287_02factory.iml" />
       <module fileurl="file://$PROJECT_DIR$/ee_287_02spring/ee_287_02spring.iml" filepath="$PROJECT_DIR$/ee_287_02spring/ee_287_02spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/ee_287_04bean/ee_287_04bean.iml" filepath="$PROJECT_DIR$/ee_287_04bean/ee_287_04bean.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ee_287_05DI/ee_287_05DI.iml" filepath="$PROJECT_DIR$/ee_287_05DI/ee_287_05DI.iml" />
       <module fileurl="file://$PROJECT_DIR$/itheima.iml" filepath="$PROJECT_DIR$/itheima.iml" />
     </modules>
   </component>
