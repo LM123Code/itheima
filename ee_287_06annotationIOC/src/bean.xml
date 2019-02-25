@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--告诉spring在创建容器时要扫描的包。当配置了此标签后，spring创建容器后就会去指定的包及其子包下找对应的注解
+        标签实在一个context名称空间里
+    -->
+    <context:component-scan base-package="com.itheima"></context:component-scan>
+</beans>
