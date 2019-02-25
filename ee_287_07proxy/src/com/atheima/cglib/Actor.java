@@ -1,4 +1,4 @@
-package atheima.cglib;
+package com.atheima.cglib;
 
 
 /**

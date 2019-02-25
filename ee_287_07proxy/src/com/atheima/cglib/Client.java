@@ -1,4 +1,4 @@
-package atheima.cglib;
+package com.atheima.cglib;
 
 
 import org.springframework.cglib.proxy.Enhancer;
