@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--配置service-->
+    <bean id="accountService" class="com.itheima14.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"></property>
+    </bean>
+    <!--配置dao-->
+    <bean id="accountDao" class="com.itheima14.dao.impl.AccountDaoImpl">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!--配置Spring内置数据源-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/addressbook"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="nanshen166013"></property>
+    </bean>
+    <!--Spring基于xml的声明式事务控制-->
+    <!--1.配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入数据源-->
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!--2.配置事物的通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!--4.配置事物的属性
+            isolation:配置事物的隔离级别，默认为default，使用数据库的隔离级别。mysql是REPEATABLE_READ
+            propagation:事物的传播方式。默认为required。一般选择（增删改方法）。当是查询方法时，选择supports
+            timeout:指定事物的超时时间。当指定其他值时，以秒为单位
+            read-only:配置是否只读事物，默认为false（读写型事物），当指定为true表示为只读，只能用于查询方法
+            rollback-for:用于指定一个异常，当执行产生该异常时，事务回滚；产生其他异常时，事物不会滚；没有默认值，任何异常都会滚
+            no-rollback-for:和上面的前者相反，后者相同，没有默认值，任何异常都会滚
+        -->
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"></tx:method>
+        </tx:attributes>
+    </tx:advice>
+    <!--3.配置aop
+        切入点表达式
+        通知和切入点表达式的关联
+    -->
+    <aop:config>
+        <!--配置切入点表达式-->
+        <aop:pointcut id="pt1" expression="execution(* com.itheima14.service.impl.*.*(..))"></aop:pointcut>
+        <!--配置事物通知和表达式的关联-->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt1"></aop:advisor>
+    </aop:config>
+</beans>
